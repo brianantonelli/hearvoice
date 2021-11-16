@@ -1,0 +1,51 @@
+{
+  "name": "hearvoice",
+  "version": "0.0.1",
+  "description": "Portable Voice to Text Tracker Metrics for hearing impaired children.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "lint": "eslint --cache \"src/**/*.js\"",
+    "lint:fix": "eslint --cache --fix \"src/**/*.js\"",
+    "prettier": "prettier --check 'src/**/*.js'",
+    "prettier:fix": "prettier --write 'src/**/*.js'",
+    "prepare": "husky install"
+  },
+  "devDependencies": {
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.24.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "husky": "^7.0.0",
+    "prettier": "^2.3.2",
+    "pretty-quick": "^3.1.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brianantonelli/hearvoice.git"
+  },
+  "keywords": [
+    "voice",
+    "text",
+    "voice2text",
+    "hearing",
+    "hoh",
+    "hard of hearing",
+    "deaf",
+    "raspberry pi",
+    "rpi",
+    "raspi"
+  ],
+  "author": "Brian.Antonelli <brian.antonelli@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/brianantonelli/hearvoice/issues"
+  },
+  "homepage": "https://github.com/brianantonelli/hearvoice#readme",
+  "dependencies": {
+    "@ronomon/opened": "^1.5.2",
+    "chokidar": "^3.5.2",
+    "onoff": "^6.0.3"
+  }
+}
