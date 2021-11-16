@@ -12,7 +12,7 @@ ssh-copy-id -p 22 pi@hearvoice.local
 
 ```
 sudo apt update && sudo apt-get update && sudo apt-get -y upgrade && sudo apt-get dist-upgrade
-sudo apt-get install -y python3-pip git sox nodejs npm
+sudo apt-get install -y python3-pip git sox nodejs npm lsof
 sudo pip3 install --upgrade setuptools adafruit-python-shell
 wget https://raw.githubusercontent.com/adafruit/Raspberry-Pi-Installer-Scripts/master/raspi-blinka.py
 sudo python3 raspi-blinka.py
@@ -83,3 +83,9 @@ ctl.!default {
 **From Pi**
 
 `rsync -av pi@hearvoice.local:~/hearvoice/ .`
+
+## AWS Setup
+
+1. Create IAM access key
+2. Add access key to `config.yml`
+3. Add access key to `~/.aws/credentials`
