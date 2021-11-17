@@ -40,6 +40,7 @@
     "chokidar": "^3.5.2",
     "jest": "^26.4.2",
     "onoff": "^6.0.3",
+    "uuid": "^8.3.2",
     "yaml": "^1.10.2"
   },
   "devDependencies": {

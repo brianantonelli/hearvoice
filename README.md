@@ -72,6 +72,12 @@ ctl.!default {
 
 `AUDIODEV=hw:3 rec -c1 -r 192000 record.wav silence 1 0.1 1% 1 5.0 1% : newfile : restart`
 
+## AWS Setup
+
+### S3
+
+Create audio and transcription buckets and update `config.yml`.
+
 ## Commands
 
 ### Sync Code/Data

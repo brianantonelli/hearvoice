@@ -1,4 +1,9 @@
 aws:
   access_key: xxx
   secret_key: yyy
-  bucket: hearvoice
+  region: 'us-east-1'
+  voice_bucket: 'hearvoice'
+  transcribe_bucket: 'hearvoice-transcribed'
+  trans_poll_freq: 2500
+language_code: 'en-US'
+sample_rate_hertz: 48000
