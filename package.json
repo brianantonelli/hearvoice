@@ -35,10 +35,12 @@
   },
   "homepage": "https://github.com/brianantonelli/hearvoice#readme",
   "dependencies": {
+    "aws-sdk": "^2.1029.0",
     "chalk": "^4.1.2",
     "chokidar": "^3.5.2",
     "jest": "^26.4.2",
-    "onoff": "^6.0.3"
+    "onoff": "^6.0.3",
+    "yaml": "^1.10.2"
   },
   "devDependencies": {
     "eslint": "^7.32.0",
