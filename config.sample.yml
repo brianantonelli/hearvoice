@@ -7,3 +7,4 @@ aws:
   trans_poll_freq: 2500
 language_code: 'en-US'
 sample_rate_hertz: 48000
+confidence_threshold: 0.6
