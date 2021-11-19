@@ -1,6 +1,6 @@
 aws:
-  access_key: xxx
-  secret_key: yyy
+  access_key: 'xxx'
+  secret_key: 'yyy'
   region: 'us-east-1'
   voice_bucket: 'hearvoice'
   transcribe_bucket: 'hearvoice-transcribed'
@@ -8,3 +8,9 @@ aws:
 language_code: 'en-US'
 sample_rate_hertz: 48000
 confidence_threshold: 0.6
+db:
+  database: 'hearvoice'
+  user: 'hearvoice'
+  password: 'xxx'
+  host: 'localhost'
+  port: 5432

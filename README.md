@@ -11,8 +11,9 @@ ssh-copy-id -p 22 pi@hearvoice.local
 ### Core Libraries
 
 ```
-sudo apt update && sudo apt-get update && sudo apt-get -y upgrade && sudo apt-get dist-upgrade
+sudo apt update && sudo apt full-upgrade -y && sudo apt-get update && sudo apt-get -y upgrade && sudo apt-get dist-upgrade
 sudo apt-get install -y python3-pip git sox nodejs npm lsof
+sudo apt install postgresql -y
 sudo pip3 install --upgrade setuptools adafruit-python-shell
 wget https://raw.githubusercontent.com/adafruit/Raspberry-Pi-Installer-Scripts/master/raspi-blinka.py
 sudo python3 raspi-blinka.py
@@ -68,9 +69,18 @@ ctl.!default {
 
 8. Test recording/playback: `sudo arecord -f cd -Dhw:3 | aplay -Dhw:3`
 
-## Test detecting speech and only recording when theres noise
+## Postgres Setup
 
-`AUDIODEV=hw:3 rec -c1 -r 192000 record.wav silence 1 0.1 1% 1 5.0 1% : newfile : restart`
+```
+sudo su postgres
+createuser pi -P --interactive # enter password, setup as super user
+psql
+CREATE DATABASE pi;
+exit
+exit
+psql
+CREATE DATABASE hearvoice;
+```
 
 ## AWS Setup
 
