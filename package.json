@@ -10,7 +10,7 @@
     "prettier": "prettier --check 'src/**/*.js'",
     "prettier:fix": "prettier --write 'src/**/*.js'",
     "prepare": "husky install",
-    "database": "node lib/setupPostgres.js",
+    "database": "node src/utils/setupPostgres.js",
     "test": "jest"
   },
   "repository": {
@@ -41,6 +41,7 @@
     "chokidar": "^3.5.2",
     "jest": "^26.4.2",
     "onoff": "^6.0.3",
+    "pg": "^8.7.1",
     "uuid": "^8.3.2",
     "yaml": "^1.10.2"
   },

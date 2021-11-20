@@ -80,6 +80,14 @@ exit
 exit
 psql
 CREATE DATABASE hearvoice;
+exit
+
+sudo vi /etc/postgresql/13/main/postgresql.conf
+# SET `listen_addresses = '*'`
+sudo vi /etc/postgresql/13/main/pg_hba.conf
+# CHANGE `127.0.0.1/32` to `0.0.0.0/0 `
+# CHANGE `::1/128` to `::/0`
+sudo service postgresql restart
 ```
 
 ## AWS Setup
