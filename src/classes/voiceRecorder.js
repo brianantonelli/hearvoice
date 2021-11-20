@@ -2,7 +2,7 @@ const { spawn } = require('child_process');
 const EventEmitter = require('events');
 const chalk = require('chalk');
 
-const { getConfig } = require('./utils');
+const { getConfig } = require('../utils');
 
 /**
  * Voice Recorder

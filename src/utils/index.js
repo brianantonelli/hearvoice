@@ -10,7 +10,7 @@ let _config;
  */
 module.exports.getConfig = () => {
   if (!_config) {
-    const configContents = fs.readFileSync(resolve(__dirname, '..', 'config.yml'), 'utf8');
+    const configContents = fs.readFileSync(resolve(__dirname, '..', '..', 'config.yml'), 'utf8');
     _config = YAML.parse(configContents);
   }
 
@@ -70,4 +70,12 @@ module.exports.poll = async (fn, validate, interval, maxAttempts) => {
   };
 
   return new Promise(executePoll);
+};
+
+/**
+ * Returns the current date in format YYYY-MM-DD
+ * @returns Date as string
+ */
+module.exports.getDate = () => {
+  return new Date().toISOString().split('T')[0];
 };

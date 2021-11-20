@@ -3,7 +3,7 @@ const chokidar = require('chokidar');
 const chalk = require('chalk');
 const { unlink } = require('fs').promises;
 
-const { VoiceRecordingState } = require('./types');
+const { VoiceRecordingState } = require('../types');
 const VoiceRecording = require('./voiceRecording');
 
 /**

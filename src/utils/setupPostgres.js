@@ -1,7 +1,7 @@
 const { migrate } = require('postgres-migrations');
 const { resolve } = require('path');
 
-const { getConfig } = require('./utils');
+const { getConfig } = require('./index');
 
 (async () => {
   const dbConfig = {
@@ -11,7 +11,9 @@ const { getConfig } = require('./utils');
       defaultDatabaseName: 'pi',
     },
   };
+
   console.log(JSON.stringify(dbConfig, null, 2));
   console.log(resolve('migrations'));
+
   await migrate(dbConfig, resolve('migrations'));
 })();

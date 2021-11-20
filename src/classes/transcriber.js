@@ -1,10 +1,10 @@
 const chalk = require('chalk');
 const { v4: uuidv4 } = require('uuid');
 
-const { VoiceRecordingState } = require('./types');
-const { upload: uploadToS3, remove: removeFromS3 } = require('./aws/s3');
-const { requestTranscription, getTranscription } = require('./aws/transcribe');
-const { getConfig } = require('./utils');
+const { VoiceRecordingState } = require('../types');
+const { upload: uploadToS3, remove: removeFromS3 } = require('../aws/s3');
+const { requestTranscription, getTranscription } = require('../aws/transcribe');
+const { getConfig } = require('../utils');
 
 /**
  * Voice Transcriber

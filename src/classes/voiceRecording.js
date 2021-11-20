@@ -1,6 +1,6 @@
 const { basename } = require('path');
 
-const { VoiceRecordingState } = require('./types');
+const { VoiceRecordingState } = require('../types');
 
 /**
  * Represents a voice audio recording.

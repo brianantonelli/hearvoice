@@ -1,9 +1,9 @@
 const { resolve: resolvePath } = require('path');
 const chalk = require('chalk');
 
-const VoiceRecorder = require('./voiceRecorder');
-const FileManager = require('./filemanager');
-const Transcriber = require('./transcriber');
+const VoiceRecorder = require('./classes/voiceRecorder');
+const FileManager = require('./classes/filemanager');
+const Transcriber = require('./classes/transcriber');
 const { sleep } = require('./utils');
 
 const wavesPath = resolvePath('.', 'recordings');
