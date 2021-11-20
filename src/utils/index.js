@@ -1,8 +1,9 @@
 const { resolve } = require('path');
-const fs = require('fs');
+const { readFileSync, statSync } = require('fs');
 const YAML = require('yaml');
 
 let _config;
+const BYTES_PER_MB = 1024 ** 2;
 
 /**
  * Returns the a configuration object which contains values from `config.yml`
@@ -10,7 +11,7 @@ let _config;
  */
 module.exports.getConfig = () => {
   if (!_config) {
-    const configContents = fs.readFileSync(resolve(__dirname, '..', '..', 'config.yml'), 'utf8');
+    const configContents = readFileSync(resolve(__dirname, '..', '..', 'config.yml'), 'utf8');
     _config = YAML.parse(configContents);
   }
 
@@ -78,4 +79,17 @@ module.exports.poll = async (fn, validate, interval, maxAttempts) => {
  */
 module.exports.getDate = () => {
   return new Date().toISOString().split('T')[0];
+};
+
+/**
+ * Returns the size of a file in megabytes.
+ * @param {str} path - Path to file
+ * @returns Size of file in MB
+ */
+module.exports.getFileSize = (path) => {
+  try {
+    return Math.round((statSync(path).size / BYTES_PER_MB) * 100) / 100;
+  } catch (e) {
+    return 0;
+  }
 };

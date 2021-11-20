@@ -1,12 +1,21 @@
 const { Pool } = require('pg');
 
-const { getConfig, getDate } = require('../utils');
+const { getConfig } = require('../utils');
 
+/**
+ * Database Connection Manager
+ */
 class Database {
   constructor() {
     this._pool = new Pool(getConfig().db);
   }
 
+  /**
+   * Performs a single query and returns the results.
+   * @param {*} text - SQL (params in $# format)
+   * @param {*} params - Parameters to pass
+   * @returns Query results
+   */
   async query(text, params) {
     const start = Date.now();
     const res = await this._pool.query(text, params);
@@ -16,6 +25,10 @@ class Database {
     return res;
   }
 
+  /**
+   * Returns a PSQL client for performing batch queries. Automatically closes after 5 seconds of inactivity;
+   * @returns PSQL Client
+   */
   async getClient() {
     const client = await this._pool.connect();
     const query = client.query;
@@ -39,39 +52,12 @@ class Database {
       // set the methods back to their old un-monkey-patched version
       client.query = query;
       client.release = release;
+
       return release.apply(client);
     };
+
     return client;
   }
 }
 
-(async () => {
-  const db = new Database();
-  const word = 'foo';
-
-  try {
-    const results = await db.query('SELECT occurrences FROM words WHERE word = $1 AND heard_on = $2', [
-      word,
-      getDate(),
-    ]);
-
-    if (results.rowCount > 0) {
-      console.log(results.rows[0]);
-      const newValue = parseInt(results.rows[0].occurrences) + 1;
-      await db.query('UPDATE words SET occurrences = $1 WHERE word = $2 AND heard_on = $3', [
-        newValue,
-        word,
-        getDate(),
-      ]);
-    } else {
-      await db.query('INSERT INTO words(word, occurrences, heard_on) VALUES($1, $2, $3)', [word, 1, getDate()]);
-    }
-
-    const results2 = await db.query('select * from words');
-    console.log(JSON.stringify(results2));
-  } catch (e) {
-    console.error(`Error: ${e.message}`, e);
-  }
-})();
-
-// module.exports = Database;
+module.exports = Database;

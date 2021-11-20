@@ -115,7 +115,7 @@ class VoiceRecording {
     this.s3Key;
     this.s3LocationTranscription;
     this.transcribedText;
-    this.transcribedWords = [];
+    this.transcribedWords = {};
   }
 }
 

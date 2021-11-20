@@ -4,7 +4,7 @@ const { v4: uuidv4 } = require('uuid');
 const { VoiceRecordingState } = require('../types');
 const { upload: uploadToS3, remove: removeFromS3 } = require('../aws/s3');
 const { requestTranscription, getTranscription } = require('../aws/transcribe');
-const { getConfig } = require('../utils');
+const { getConfig, getFileSize } = require('../utils');
 
 /**
  * Voice Transcriber
@@ -23,7 +23,7 @@ class Transcriber {
 
     try {
       console.time('Transcribing');
-      console.log(`Uploading to S3: ${recording.s3Key}`);
+      console.log(`Uploading ${getFileSize(recording.filepath)}MB recording to S3: ${recording.s3Key}`);
       recording.s3Location = await uploadToS3(recording.filepath, voiceBucket, recording.s3Key);
       recording.state = VoiceRecordingState.UPLOADED;
 

@@ -1,10 +1,11 @@
 const EventEmitter = require('events');
 const chokidar = require('chokidar');
 const chalk = require('chalk');
-const { unlink } = require('fs').promises;
+const { unlink, stat } = require('fs').promises;
 
 const { VoiceRecordingState } = require('../types');
 const VoiceRecording = require('./voiceRecording');
+const { getFileSize } = require('../utils');
 
 /**
  * File Manager
@@ -19,7 +20,7 @@ class FileManager extends EventEmitter {
 
     this._path = path;
     this._watcher;
-    this._recordings = [];
+    this._recordings = []; // TODO: do we need to periodically clean this up?
   }
 
   /**
@@ -34,7 +35,15 @@ class FileManager extends EventEmitter {
       const lastRecording = this._recordings.slice(-1)[0];
       lastRecording.state = VoiceRecordingState.SAVED;
       console.log(`Recording complete: ${lastRecording.filename}. Duration: ${lastRecording.duration}`);
-      this.emit('recordingAvailable', lastRecording);
+
+      const fsize = getFileSize(lastRecording.filepath);
+      if (fsize < 1) {
+        console.warn(chalk.yellow(`Recording (${lastRecording.filename}) was less than 1MB (${fsize}MB). Skipping.`));
+        lastRecording.state = VoiceRecordingState.INVALID;
+        this.remove(lastRecording.filepath);
+      } else {
+        this.emit('recordingAvailable', lastRecording);
+      }
     }
 
     const voiceRecording = new VoiceRecording(path, VoiceRecordingState.RECORDING);
@@ -47,6 +56,10 @@ class FileManager extends EventEmitter {
 
   _error(error) {
     console.error(`Error: ${error.message}`);
+  }
+
+  async _getFileSize(path) {
+    return (await stat(path)).size / this.bytes_per_mb;
   }
 
   /**

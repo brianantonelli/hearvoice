@@ -38,6 +38,11 @@ module.exports.VoiceRecordingState = Object.freeze({
   ERROR: Symbol('error'),
 
   /**
+   * Invalid recording due to small size.
+   */
+  INVALID: Symbol('invalid'),
+
+  /**
    * Unknown
    */
   UNKNOWN: Symbol('unknown'),

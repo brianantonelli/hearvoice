@@ -56,7 +56,7 @@ module.exports.getTranscription = async (jobName) => {
   let transResults;
 
   try {
-    await poll(getTrans, isJobDone, pollFreq, 30);
+    await poll(getTrans, isJobDone, pollFreq, 100);
     transResults = JSON.parse(await s3Get(transBucket, transKey)).results;
   } catch (e) {
     console.error(chalk.red(`Error polling for transcription: ${e.message}`), e);
